@@ -15,7 +15,7 @@ Para utilizar este proyecto, sigue estos pasos:
 
 - Clona este repositorio en tu máquina local utilizando el comando git clone [URL_del_repositorio].
 - Abre el archivo index.html en tu navegador web preferido.
-- HHaz clic en el elePHPant y disfruta leyendo la carta.
+- Haz clic en el elePHPant y disfruta leyendo la carta.
 
 ```
     .\index.html
