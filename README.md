@@ -1,19 +1,27 @@
 # Happy Father's Day 👔👨‍👧
+[![forthebadge](http://forthebadge.com/images/badges/made-with-css.svg)](https://www.linkedin.com/in/drphp/)
+[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
+
 Querido Papá,
 
 Espero que hoy puedas desconectar un poco y disfrutar de tu día. Mereces todos los elogios y mucho más.
 
 Con todo mi cariño, PHPeitor
 
-Para utilizar este proyecto, sigue estos pasos:
+## 🚀 Quick Start
 
-- Clona este repositorio en tu máquina local utilizando el comando git clone [URL_del_repositorio].
-- Abre el archivo index.html en tu navegador web preferido.
-- Haz clic en el elePHPant y disfruta leyendo la carta.
+Sigue estos pasos para dar vida a tu gráfico de contribuciones:
 
+1. **Clonar este repositorio**
+```bash
+git clone https://github.com/phpeitor/happy-father-day.git
+cd happy-father-day
 ```
-    .\index.html
+2. **Ejecutar comando**
+```bash
+index.html
 ```
+3. Haz clic en el elePHPant y disfruta leyendo la carta.
 
 [![Video](https://img.youtube.com/vi/WhY9uj90Uxw/0.jpg)](https://www.youtube.com/watch?v=WhY9uj90Uxw)  
 [Ver demo](https://www.youtube.com/watch?v=WhY9uj90Uxw)
