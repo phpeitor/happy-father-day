@@ -1,11 +1,7 @@
-# Happy Father´s Day 👔👨‍👧
+# Happy Father's Day 👔👨‍👧
 Querido Papá,
 
-En este dia quiero tomar un momento para agradecerte por todo lo que haces. No solo eres un programador excepcional, sino también el mejor padre que podría pedir. Gracias por enseñarme que la vida, como en el código, está llena de desafíos y soluciones. Tu paciencia para depurar problemas, tu lógica para encontrar soluciones y tu dedicación para siempre mejorar son cualidades que admiro profundamente.
-
 Espero que hoy puedas desconectar un poco y disfrutar de tu día. Mereces todos los elogios y mucho más.
-
-Feliz Día del Padre
 
 Con todo mi cariño, PHPeitor
 
