@@ -1,12 +1,55 @@
 import {Pane} from 'https://cdn.jsdelivr.net/npm/tweakpane@4.0.5/dist/tweakpane.min.js';
 
-let density = 5;
+let density = 2;
 let distance = 0;
 let speed = 200;
 const directions = ['top', 'right', 'bottom', 'left'];
 let isPaused = false;
-const images = ["https://picsum.photos/id/106/900/500","https://picsum.photos/id/115/900/500","https://picsum.photos/id/116/900/500","https://picsum.photos/id/124/900/500","https://picsum.photos/id/126/900/500","https://picsum.photos/id/130/900/500","https://picsum.photos/id/143/900/500","https://picsum.photos/id/152/900/500","https://picsum.photos/id/167/900/500","https://picsum.photos/id/190/900/500","https://picsum.photos/id/191/900/500","https://picsum.photos/id/193/900/500","https://picsum.photos/id/195/900/500","https://picsum.photos/id/204/900/500","https://picsum.photos/id/227/900/500","https://picsum.photos/id/251/900/500","https://picsum.photos/id/253/900/500","https://picsum.photos/id/256/900/500","https://picsum.photos/id/257/900/500","https://picsum.photos/id/259/900/500","https://picsum.photos/id/271/900/500","https://picsum.photos/id/274/900/500","https://picsum.photos/id/277/900/500","https://picsum.photos/id/278/900/500","https://picsum.photos/id/289/900/500","https://picsum.photos/id/291/900/500","https://picsum.photos/id/296/900/500","https://picsum.photos/id/299/900/500","https://picsum.photos/id/306/900/500","https://picsum.photos/id/308/900/500","https://picsum.photos/id/318/900/500","https://picsum.photos/id/327/900/500","https://picsum.photos/id/337/900/500","https://picsum.photos/id/339/900/500","https://picsum.photos/id/376/900/500","https://picsum.photos/id/381/900/500","https://picsum.photos/id/392/900/500","https://picsum.photos/id/395/900/500","https://picsum.photos/id/402/900/500","https://picsum.photos/id/411/900/500","https://picsum.photos/id/419/900/500","https://picsum.photos/id/424/900/500","https://picsum.photos/id/428/900/500"];
-
+const images = [
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif",
+    "../images/2.gif",
+    "../images/3.gif",
+    "../images/4.gif",
+    "../images/5.gif",
+    "../images/6.gif",
+    "../images/1.gif"
+];
 function preloadImages(srcArray, callback) {
   let loaded = 0;
   srcArray.forEach(src => {
