@@ -10,8 +10,6 @@ Con todo mi cariño, PHPeitor
 
 ## 🚀 Quick Start
 
-Sigue estos pasos para dar vida a tu gráfico de contribuciones:
-
 1. **Clonar este repositorio**
 ```bash
 git clone https://github.com/phpeitor/happy-father-day.git
