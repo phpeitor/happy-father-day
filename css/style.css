@@ -22,8 +22,6 @@ html, body {
 body {
 	font-family: 'Indie Flower', cursive !important;
 	background: #FDE3A7;
-	margin: 0px;
-	padding: 0px;
 }
 
 ::selection {
@@ -141,4 +139,7 @@ h4 {
 	text-align: right;
 }
 
-
+.spaced-line {
+    margin-bottom: 1.5em;
+    display: block;
+}
