@@ -19,7 +19,7 @@ cd happy-father-day
 ```bash
 index.html
 ```
-3. Haz clic en el elePHPant y disfruta leyendo la carta.
+3. Haz clic en la imágen y disfruta leyendo la carta.
 
 [![Video](https://img.youtube.com/vi/WhY9uj90Uxw/0.jpg)](https://www.youtube.com/watch?v=WhY9uj90Uxw)  
 [Ver demo](https://www.youtube.com/watch?v=WhY9uj90Uxw)
