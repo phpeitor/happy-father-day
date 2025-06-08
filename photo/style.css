@@ -189,3 +189,7 @@ body:has(div.selectedPane) div#back-btn {
 body:has(div.selectedPane) div.tp-dfwv {
     display: none;
 }
+
+.back{
+    font-size: 33px;
+}

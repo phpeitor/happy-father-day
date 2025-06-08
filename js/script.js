@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Deja a un lado el teclado y disfruta como te lo mereces.",
         "Con todo mi cariño",
         "♥ PHPeitor",
-        "<a href='./photos' style='color:rgba(230, 12, 12, 0.8);'>see photos</a>"
+        "<a href='./photo' style='color:rgba(230, 12, 12, 0.8);'>see photos</a>"
     ];
 
     let currentLine = 0;
