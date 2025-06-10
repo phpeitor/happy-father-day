@@ -5,61 +5,43 @@ let distance = 0;
 let speed = 200;
 const directions = ['top', 'right', 'bottom', 'left'];
 let isPaused = false;
-const images = [
+
+const baseImages = [
     "../images/1.gif",
     "../images/2.gif",
     "../images/3.gif",
     "../images/4.gif",
     "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif"
+    "../images/6.gif"
 ];
+
+function generateImageArray(count) {
+    const result = [];
+    for (let i = 0; i < count; i++) {
+        result.push(baseImages[i % baseImages.length]);
+    }
+    return result;
+}
+
+const images = generateImageArray(42);
+
 function preloadImages(srcArray, callback) {
-  let loaded = 0;
-  srcArray.forEach(src => {
-    const img = new Image();
-    img.onload = () => {
-      loaded++;
-      if (loaded === srcArray.length) callback();
-    };
-    img.src = src;
-  });
+    let loaded = 0;
+    const uniqueImages = [...new Set(srcArray)]; 
+    
+    if (uniqueImages.length === 0) {
+        callback();
+        return;
+    }
+
+    uniqueImages.forEach(src => {
+        const img = new Image();
+        img.onload = img.onerror = () => {
+            loaded++;
+            if (loaded === uniqueImages.length) callback();
+        };
+        img.src = src;
+    });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -129,11 +111,17 @@ function pauseInterval() {
 }
 
 function resumeInterval() {
-document.querySelector('.selected')?.classList.remove('selected');
-document.querySelector('.selectedPane')?.classList.remove('selectedPane');
-  if (!isPaused) return;
-  isPaused = false;
-  startImageInterval();
+    document.querySelector('.selected')?.classList.remove('selected');
+    document.querySelector('.selectedPane')?.classList.remove('selectedPane');
+    
+    if (!isPaused) return;
+    isPaused = false;
+    
+    if (allGridElements.every(el => el.classList.contains('loaded'))) {
+        renderWalls();
+    } else {
+        startImageInterval();
+    }
 }
 
 document.getElementById('back-btn').addEventListener('click', resumeInterval);
@@ -163,13 +151,10 @@ function animateDistance(toValue, duration = 600) {
 
 document.addEventListener('allImagesLoaded', () => {
   document.body.classList.add('all-loaded');
-  console.log(`
-    Trigger for all images being loaded. 
-    Idea maybe to unload after a set time of loaded and refresh?
-  `);
+  console.log('Todas las imágenes han sido cargadas');
 });
 
-/* js gui */
+/*** Panel Control ***/ 
 const PARAMS = {
   size: density,
   distance: 0,

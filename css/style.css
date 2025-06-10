@@ -34,17 +34,15 @@ h4 {
 	font-family: 'Amatic SC', cursive !important;
 }
 
-.color1{color:#1BBC9B}
-.color2{color:#C0392B}
+.color1{color:#0dc7a2}
+.color2{color:#9e2517}
 
 
 .card {
-	color: #013243;
+	color: #01151d;
 	position: absolute;
 	top: 50%;
 	left: 50%;
-	width: 433px;
-	height: 400px;
 	background: #e0e1dc;
 	transform-style: preserve-3d;
 	transform: translate(-50%,-50%) perspective(2000px);

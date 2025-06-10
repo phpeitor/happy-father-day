@@ -5,10 +5,10 @@ document.addEventListener("DOMContentLoaded", function () {
         "a pesar del cansancio, seguías trabajando.",
         "No solo por cumplir con tus responsabilidades,",
         "sino por el amor inquebrantable hacia la familia.",
-        "Eres nuestro héroe particular, ese 'debugger' de la vida",
-        "que siempre encuentra la solución perfecta",
+        "Eres nuestro héroe particular, ese 'debugger' de",
+        "la vida que siempre encuentra la solución perfecta",
         "a cualquier problema que se presente.",
-        "Deja a un lado el teclado y disfruta como te lo mereces.",
+        "Deja a un lado el teclado y disfruta.",
         "Con todo mi cariño",
         "♥ PHPeitor",
         "<a href='./photo' style='color:rgba(230, 12, 12, 0.8);'>see photos</a>"
