@@ -2,55 +2,11 @@ import {Pane} from 'https://cdn.jsdelivr.net/npm/tweakpane@4.0.5/dist/tweakpane.
 
 let density = 2;
 let distance = 0;
-let speed = 200;
+let speed = 150;
 const directions = ['top', 'right', 'bottom', 'left'];
 let isPaused = false;
-const images = [
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif",
-    "../images/2.gif",
-    "../images/3.gif",
-    "../images/4.gif",
-    "../images/5.gif",
-    "../images/6.gif",
-    "../images/1.gif"
-];
 
+const baseImages = Array.from({ length: 6 }, (_, i) => `../images/${i + 1}.gif`);
 
 function preloadImages(srcArray, callback) {
   let loaded = 0;
@@ -65,7 +21,7 @@ function preloadImages(srcArray, callback) {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  preloadImages(images, () => { renderWalls(); });
+  preloadImages(baseImages, () => { renderWalls(); });
 });
 
 const allGridElements = [];
@@ -108,7 +64,7 @@ function startImageInterval() {
     if (unloadedElements.length === 0) return;
 
     const randomElement = unloadedElements[Math.floor(Math.random() * unloadedElements.length)];
-    const randomImage = images[Math.floor(Math.random() * images.length)];
+    const randomImage = baseImages[Math.floor(Math.random() * baseImages.length)];
     randomElement.style.background = `url('${randomImage}')`;
     randomElement.classList.add('loaded');
     loadedCount++;
@@ -171,10 +127,10 @@ document.addEventListener('allImagesLoaded', () => {
   `);
 });
 
-/* js gui */
+/* Panel Control */
 const PARAMS = {
   size: density,
-  distance: 0,
+  distance: distance,
   speed: speed,
 };
 
