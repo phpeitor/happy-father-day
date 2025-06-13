@@ -116,7 +116,14 @@ body {
         text-align: center;
     }
     span { color: orangered; }
-    div.button {
+
+    .button-container {
+        display: flex;
+        gap: 10px; 
+        margin-top: 15px;
+    }
+
+    .button {
         background: #1e1e1e; padding: 6px 42px 8px 42px;
         border-radius: 12px; color: #fff;
         text-decoration: none; cursor: pointer;

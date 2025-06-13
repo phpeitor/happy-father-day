@@ -121,10 +121,6 @@ function animateDistance(toValue, duration = 600) {
 
 document.addEventListener('allImagesLoaded', () => {
   document.body.classList.add('all-loaded');
-  console.log(`
-    Trigger for all images being loaded. 
-    Idea maybe to unload after a set time of loaded and refresh?
-  `);
 });
 
 /* Panel Control */
