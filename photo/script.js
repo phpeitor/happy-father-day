@@ -70,9 +70,11 @@ function startImageInterval() {
     loadedCount++;
 
     randomElement.addEventListener('click', () => { 
-      randomElement.classList.add('selected');
-      randomElement.parentNode.classList.add('selectedPane');
-      pauseInterval();
+       if (distance <= 90) {  
+        randomElement.classList.add('selected');
+        randomElement.parentNode.classList.add('selectedPane');
+        pauseInterval();
+      }
     });
 
     if (loadedCount >= totalElementsToLoad) {
