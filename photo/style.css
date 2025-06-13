@@ -197,10 +197,8 @@ body:has(div.selectedPane) div.tp-dfwv {
     display: none;
 }
 
-.inf-grid-hero-container > div > div {
-    transition: cursor 0.2s;
-}
-.inf-grid-hero-container[style*="--rev-dis:100"] > div > div {
+.inf-grid-hero-container[style*="--rev-dis: 9"] > div > div,
+.inf-grid-hero-container[style*="--rev-dis: 10"] > div > div {
     cursor: none !important;
-    pointer-events: none !important; 
+    pointer-events: none !important;
 }
