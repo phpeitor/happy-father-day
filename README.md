@@ -23,8 +23,8 @@ index.html
 [![Video](https://img.youtube.com/vi/WhY9uj90Uxw/0.jpg)](https://www.youtube.com/watch?v=WhY9uj90Uxw)  
 [Ver demo v1](https://www.youtube.com/watch?v=WhY9uj90Uxw)
 
-[![Video](https://img.youtube.com/vi/WhY9uj90Uxw/0.jpg)](https://www.youtube.com/watch?v=WhY9uj90Uxw)  
-[Ver demo v2](https://www.youtube.com/watch?v=WhY9uj90Uxw)
+[![Video](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk)  
+[Ver demo v2](https://www.youtube.com/watch?v=Od_2tI_j8pk)
 
 <a href="#" target="_self" style="pointer-events: none;">
   <img src="https://wiesseconsultores.com/demo.gif" alt="Demo Git">
