@@ -1,33 +1,48 @@
-# Father's Day 👔👨‍👧
-[![forthebadge](http://forthebadge.com/images/badges/uses-css.svg)](https://www.linkedin.com/in/drphp/)
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
+<div align="center">
+  <h1>Father's Day Interactive Card 👔👨‍👧</h1>
+  <p>Una tarjeta interactiva, dinámica y diseñada con amor para celebrar el Día del Padre.</p>
 
-Querido Papá,
+  [![forthebadge](http://forthebadge.com/images/badges/uses-css.svg)](https://www.linkedin.com/in/drphp/)
+  [![forthebadge](http://forthebadge.com/images/badges/made-with-javascript.svg)](https://www.linkedin.com/in/drphp/)
+  [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
+</div>
 
-Espero que hoy puedas desconectar un poco y disfrutar de tu día. Mereces todos los elogios y mucho más.
+<hr/>
 
-Con todo mi cariño, PHPeitor
+## 📖 Acerca del Proyecto
 
-## 🚀 Quick Start
+**Happy Father's Day** es un proyecto web ágil y elegante diseñado para crear una experiencia visual emotiva. Incorpora un fondo de video relajante, efectos tridimensionales en formato de "libro/tarjeta" interactivo y un motor con escritura automatizada que reproduce la lectura de una carta paso a paso.
 
-1. **Clonar este repositorio**
-```bash
-git clone https://github.com/phpeitor/happy-father-day.git
-cd happy-father-day
-```
-2. **Ejecutar comando**
-```bash
-index.html
-```
+> *"Espero que hoy puedas desconectar un poco y disfrutar de tu día. Mereces todos los elogios y mucho más. - Con todo mi cariño, PHPeitor"*
 
-[![Video](https://img.youtube.com/vi/WhY9uj90Uxw/0.jpg)](https://www.youtube.com/watch?v=WhY9uj90Uxw)  
-[Ver demo?v1.0](https://www.youtube.com/watch?v=WhY9uj90Uxw)
+## 🌟 Características Principales
 
-[![Video](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk)  
-[Ver demo?v2.0](https://www.youtube.com/watch?v=Od_2tI_j8pk)
+- 🎬 **Fondo Inmersivo** con superposición cinemática (degradado overlay).
+- 📖 **Efecto de Libro 3D** programado sobre CSS puro (`transform-style: preserve-3d`), con transiciones fluidas en eventos `hover`.
+- ⌨️ **Typing Effect Automático** que escribe interactivamente el contenido de la carta.
+- ⚙️ **DOM Dinámico e Iterativo** que inyecta elementos evitando sobrecargar el archivo index HTML (Principio DRY).
+- 📏 **Arquitectura Profesional** construida aplicando estrictas buenas prácticas de desarrollo. (Consulta el archivo de [FRONTEND_RULES.md](./FRONTEND_RULES.md)).
 
-<a href="#" target="_self" style="pointer-events: none;">
-  <img src="https://wiesseconsultores.com/demo.gif" alt="Demo Git">
-</a>
+## 🚀 Quick Start / Despliegue Local
 
+1. **Clonar este repositorio:**
+   ```bash
+   git clone https://github.com/phpeitor/happy-father-day.git
+   cd happy-father-day
+   ```
+
+2. **Ejecutar el proyecto:**
+   Abre el archivo predeterminado en tu navegador:
+   ```bash
+   index.html
+   ```
+
+*(Nota: Para evitar bloqueos CORS con el renderizado dinámico web o media, recomendamos utilizar un servidor estático ligero como "Live Server" en VS Code, o desplegar en tu entorno local Apache `htdocs`).*
+
+## 🎥 Demos
+
+[![Video 2](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk) |
+
+
+---
 *If you're interested in knowing the powerlevel configuration to get this prompt, have a look at [this gist](https://github.com/phpeitor/).*

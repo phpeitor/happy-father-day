@@ -14,6 +14,18 @@ document.addEventListener("DOMContentLoaded", function () {
         "<a href='./photo' style='color:rgba(230, 12, 12, 0.8);'>see photos</a>"
     ];
 
+    const typedOutput = document.getElementById("typed-output");
+    
+    // Crear los elementos dinámicamente
+    lines.forEach((_, index) => {
+        const p = document.createElement("p");
+        p.id = `line${index + 1}`;
+        if (index >= 9) { // Las últimas 3 líneas
+            p.className = "text-right";
+        }
+        typedOutput.appendChild(p);
+    });
+
     let currentLine = 0;
 
     function typeNextLine() {
