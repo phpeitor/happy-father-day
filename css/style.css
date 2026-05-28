@@ -15,7 +15,18 @@ html, body {
 	width: 100vw;
 	height: 110vh;
 	object-fit: cover;
+	z-index: -2;
+}
+
+.video-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: linear-gradient(135deg, rgba(235, 114, 21, 0.2) 0%, rgba(13, 21, 35, 0.7) 100%);
 	z-index: -1;
+	pointer-events: none;
 }
 
 body {
