@@ -6,7 +6,7 @@ let speed = 150;
 const directions = ['top', 'right', 'bottom', 'left'];
 let isPaused = false;
 
-const baseImages = Array.from({ length: 6 }, (_, i) => `../images/${i + 1}.gif`);
+const baseImages = Array.from({ length: 6 }, (_, i) => `../resources/${i + 1}.gif`);
 
 function preloadImages(srcArray, callback) {
   let loaded = 0;

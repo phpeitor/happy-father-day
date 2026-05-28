@@ -1,8 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const lines = [
         "Querido Papá,",
-        "Recuerdo con cariño esas largas noches en las que,",
-        "a pesar del cansancio, seguías trabajando.",
+        "Recuerdo con cariño esas largas noches en las",
+        "que a pesar del cansancio, seguías trabajando.",
         "No solo por cumplir con tus responsabilidades,",
         "sino por el amor inquebrantable hacia la familia.",
         "Eres nuestro héroe particular, ese 'debugger' de",
