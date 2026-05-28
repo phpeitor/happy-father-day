@@ -1,5 +1,5 @@
 <div align="center">
-  <h1>Father's Day Interactive Card 👔👨‍👧</h1>
+  <h1>Father's Day 👔</h1>
   <p>Una tarjeta interactiva, dinámica y diseñada con amor para celebrar el Día del Padre.</p>
 
   [![forthebadge](http://forthebadge.com/images/badges/uses-css.svg)](https://www.linkedin.com/in/drphp/)

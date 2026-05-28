@@ -70,11 +70,31 @@ function startImageInterval() {
     loadedCount++;
 
     randomElement.addEventListener('click', () => { 
-       if (distance <= 90) {  
-        randomElement.classList.add('selected');
-        randomElement.parentNode.classList.add('selectedPane');
+        // Crear Lightbox
+        const lightbox = document.createElement('div');
+        lightbox.className = 'lightbox-overlay';
+        
+        const img = document.createElement('div');
+        img.className = 'lightbox-img';
+        
+        // Copiar y ajustar el background de la imagen seleccionada
+        img.style.backgroundImage = randomElement.style.background;
+        
+        const closeBtn = document.createElement('span');
+        closeBtn.className = 'lightbox-close';
+        closeBtn.innerHTML = '&times;';
+        
+        lightbox.appendChild(img);
+        lightbox.appendChild(closeBtn);
+        document.body.appendChild(lightbox);
+        
         pauseInterval();
-      }
+
+        // Cerrar lightbox al hacer clic en cualquier parte del mismo
+        lightbox.addEventListener('click', () => {
+            lightbox.remove();
+            resumeInterval();
+        });
     });
 
     if (loadedCount >= totalElementsToLoad) {

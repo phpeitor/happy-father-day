@@ -197,7 +197,64 @@ body:has(div.selectedPane) div.tp-dfwv {
     display: none;
 }
 
-.inf-grid-hero-container[style*="--rev-dis: 9"] > div > div,
+.inf-grid-hero-container[style*="--rev-dis: 9"] > div > div, 
+.inf-grid-hero-container[style*="--rev-dis: 100"] > div > div {
+    cursor: default;
+}
+
+/* ================== LIGHTBOX ================== */
+.lightbox-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(5px);
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    animation: fadeInLightbox 0.3s ease forwards;
+}
+
+@keyframes fadeInLightbox {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox-img {
+    width: 80%;
+    height: 80%;
+    background-size: contain !important;
+    background-repeat: no-repeat !important;
+    background-position: center !important;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    cursor: default;
+    transform: scale(0.9);
+    animation: scaleUpLightbox 0.3s ease forwards;
+}
+
+@keyframes scaleUpLightbox {
+    to { transform: scale(1); }
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 30px;
+    right: 40px;
+    color: #fff;
+    font-size: 50px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.lightbox-close:hover {
+    color: orangered;
+}
 .inf-grid-hero-container[style*="--rev-dis: 10"] > div > div {
     cursor: none !important;
     pointer-events: none !important;
