@@ -11,7 +11,7 @@
 
 ## 📖 Acerca del Proyecto
 
-**Happy Father's Day** es un proyecto web ágil y elegante diseñado para crear una experiencia visual emotiva. Incorpora un fondo de video relajante, efectos tridimensionales en formato de "libro/tarjeta" interactivo y un motor con escritura automatizada que reproduce la lectura de una carta paso a paso.
+**Happy Father's Day** 
 
 > *"Espero que hoy puedas desconectar un poco y disfrutar de tu día. Mereces todos los elogios y mucho más. - Con todo mi cariño, PHPeitor"*
 
@@ -39,7 +39,7 @@
 
 *(Nota: Para evitar bloqueos CORS con el renderizado dinámico web o media, recomendamos utilizar un servidor estático ligero como "Live Server" en VS Code, o desplegar en tu entorno local Apache `htdocs`).*
 
-## 🎥 Demos
+## 🎥 Demo
 
 [![Video 2](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk) |
 
