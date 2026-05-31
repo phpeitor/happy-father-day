@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         "Deja a un lado el teclado y disfruta.<br>",
         "Con todo mi cariño",
         "♥ <b>PHPeitor</b> ♥",
-        "<a href='./photo' style='color:rgba(240, 69, 69, 0.8);'>see photos</a>"
+        "<a href='photo.html' style='color:rgba(240, 69, 69, 0.8);'>see photos</a>"
     ];
 
     const typedOutput = document.getElementById("typed-output");
