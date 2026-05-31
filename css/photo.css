@@ -54,6 +54,8 @@ body {
             opacity: 1;
             z-index: 2;
             transform: translate3d( 0, 0, -1px) !important;
+            pointer-events: auto;
+            cursor: pointer;
         }
     }
     > div.top {
@@ -218,6 +220,7 @@ body:has(div.selectedPane) div.tp-dfwv {
     cursor: pointer;
     opacity: 0;
     transition: opacity 0.22s ease;
+    pointer-events: auto;
 }
 
 .lightbox-overlay.is-open {

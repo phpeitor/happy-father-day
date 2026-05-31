@@ -26,11 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 const allGridElements = [];
 let intervalId;
+let gridClickBound = false;
 
 function renderWalls() {
   const gridContainer = document.querySelector('.inf-grid-hero-container');
   gridContainer.style.setProperty('--grid-sz', density);
   gridContainer.style.setProperty('--rev-dis', distance);
+
+  bindGridClick(gridContainer);
 
   allGridElements.length = 0;
 
@@ -70,52 +73,6 @@ function startImageInterval() {
     randomElement.classList.add('loaded');
     loadedCount++;
 
-    randomElement.addEventListener('click', () => { 
-        const lightbox = document.createElement('div');
-        lightbox.className = 'lightbox-overlay';
-        
-      const img = document.createElement('img');
-        img.className = 'lightbox-img';
-      img.src = randomElement.dataset.src || randomImage;
-      img.alt = 'Vista ampliada';
-        
-      const closeBtn = document.createElement('button');
-        closeBtn.className = 'lightbox-close';
-      closeBtn.type = 'button';
-      closeBtn.setAttribute('aria-label', 'Cerrar');
-      closeBtn.innerHTML = '&times;';
-        
-        lightbox.appendChild(img);
-        lightbox.appendChild(closeBtn);
-        document.body.appendChild(lightbox);
-        
-      requestAnimationFrame(() => {
-        lightbox.classList.add('is-open');
-      });
-
-      pauseInterval();
-
-      const closeLightbox = () => {
-        lightbox.classList.remove('is-open');
-        window.setTimeout(() => {
-          lightbox.remove();
-          resumeInterval();
-        }, 220);
-      };
-
-      lightbox.addEventListener('click', (event) => {
-        if (event.target === lightbox) {
-          closeLightbox();
-        }
-        });
-
-      img.addEventListener('click', (event) => event.stopPropagation());
-      closeBtn.addEventListener('click', (event) => {
-        event.stopPropagation();
-        closeLightbox();
-      });
-    });
-
     if (loadedCount >= totalElementsToLoad) {
       clearInterval(intervalId);
       document.dispatchEvent(new Event('allImagesLoaded'));
@@ -125,6 +82,71 @@ function startImageInterval() {
 
 function pauseInterval() {
   isPaused = true;
+}
+
+function bindGridClick(gridContainer) {
+  if (gridClickBound) return;
+  gridClickBound = true;
+
+  gridContainer.addEventListener('click', (event) => {
+    const hits = document.elementsFromPoint(event.clientX, event.clientY);
+    const tile = hits.find((element) => element.classList?.contains('loaded'));
+
+    if (!tile || !gridContainer.contains(tile)) return;
+
+    openLightbox(tile.dataset.src || tile.style.backgroundImage || '');
+  });
+}
+
+function openLightbox(src) {
+  if (!src) return;
+
+  const existing = document.querySelector('.lightbox-overlay');
+  if (existing) existing.remove();
+
+  const lightbox = document.createElement('div');
+  lightbox.className = 'lightbox-overlay';
+
+  const img = document.createElement('img');
+  img.className = 'lightbox-img';
+  img.src = src;
+  img.alt = 'Vista ampliada';
+
+  const closeBtn = document.createElement('button');
+  closeBtn.className = 'lightbox-close';
+  closeBtn.type = 'button';
+  closeBtn.setAttribute('aria-label', 'Cerrar');
+  closeBtn.innerHTML = '&times;';
+
+  lightbox.appendChild(img);
+  lightbox.appendChild(closeBtn);
+  document.body.appendChild(lightbox);
+
+  requestAnimationFrame(() => {
+    lightbox.classList.add('is-open');
+  });
+
+  pauseInterval();
+
+  const closeLightbox = () => {
+    lightbox.classList.remove('is-open');
+    window.setTimeout(() => {
+      lightbox.remove();
+      resumeInterval();
+    }, 220);
+  };
+
+  lightbox.addEventListener('click', (event) => {
+    if (event.target === lightbox) {
+      closeLightbox();
+    }
+  });
+
+  img.addEventListener('click', (event) => event.stopPropagation());
+  closeBtn.addEventListener('click', (event) => {
+    event.stopPropagation();
+    closeLightbox();
+  });
 }
 
 function resumeInterval() {
