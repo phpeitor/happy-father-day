@@ -146,17 +146,33 @@ h4 {
 	z-index: 1;
 }
 
-.box-slider__text-logo {
+.box-slider__text-badge {
 	position: absolute;
-	top: 0.5rem;
-	right: 0.5rem;
-	width: min(6rem, 22%);
-	height: auto;
-	max-width: 6rem;
-	max-height: 6rem;
+	top: 0.55rem;
+	right: 0.55rem;
 	z-index: 3;
+	display: grid;
+	place-items: center;
+	padding: 0.35rem 0.4rem 0.3rem;
+	border-radius: 0.85rem;
+	background: linear-gradient(180deg, rgba(255, 248, 235, 0.34), rgba(255, 248, 235, 0.12));
+	border: 1px solid rgba(255, 255, 255, 0.28);
+	box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+	backdrop-filter: blur(7px);
+	-webkit-backdrop-filter: blur(7px);
 	pointer-events: none;
 	user-select: none;
+}
+
+.box-slider__text-logo {
+	position: relative;
+	width: min(5.2rem, 18vw);
+	height: auto;
+	max-width: 5.2rem;
+	max-height: 5.2rem;
+	z-index: 4;
+	display: block;
+	background: transparent;
 	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
 	mix-blend-mode: normal;
 	object-fit: contain;

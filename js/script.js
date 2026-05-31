@@ -1,17 +1,17 @@
 document.addEventListener("DOMContentLoaded", function () {
     const lines = [
-        "Querido Papá,",
+        "<b>Querido Papá,</b>",
         "Recuerdo con cariño esas largas noches en las",
         "que a pesar del cansancio, seguías trabajando.",
         "No solo por cumplir con tus responsabilidades,",
         "sino por el amor inquebrantable hacia la familia.",
-        "Eres nuestro héroe particular, ese 'debugger' de",
+        "Eres nuestro héroe particular, ese <b>debugger</b> de",
         "la vida que siempre encuentra la solución perfecta",
         "a cualquier problema que se presente.",
-        "Deja a un lado el teclado y disfruta.",
+        "Deja a un lado el teclado y disfruta.<br>",
         "Con todo mi cariño",
-        "♥ PHPeitor",
-        "<a href='./photo' style='color:rgba(230, 12, 12, 0.8);'>see photos</a>"
+        "♥ <b>PHPeitor</b> ♥",
+        "<a href='./photo' style='color:rgba(240, 69, 69, 0.8);'>see photos</a>"
     ];
 
     const typedOutput = document.getElementById("typed-output");
@@ -70,13 +70,70 @@ document.addEventListener("DOMContentLoaded", function () {
             preloadImage.src = slideSrc;
         });
 
-        const textLogo = document.createElement('img');
-        textLogo.className = 'box-slider__text-logo';
-        textLogo.src = './resources/text.gif';
-        textLogo.alt = 'Father Day logo';
-        box.appendChild(textLogo);
+        function buildTransparentLogo(src) {
+            return new Promise(function (resolve, reject) {
+                const sourceImage = new Image();
 
-        let currentSlide = 0;
+                sourceImage.onload = function () {
+                    const canvas = document.createElement('canvas');
+                    const context = canvas.getContext('2d');
+
+                    if (!context) {
+                        reject(new Error('Canvas no disponible'));
+                        return;
+                    }
+
+                    canvas.width = sourceImage.naturalWidth;
+                    canvas.height = sourceImage.naturalHeight;
+                    context.drawImage(sourceImage, 0, 0);
+
+                    const imageData = context.getImageData(0, 0, canvas.width, canvas.height);
+                    const pixels = imageData.data;
+                    const backgroundRed = pixels[0];
+                    const backgroundGreen = pixels[1];
+                    const backgroundBlue = pixels[2];
+                    const threshold = 44;
+
+                    for (let index = 0; index < pixels.length; index += 4) {
+                        const redDelta = pixels[index] - backgroundRed;
+                        const greenDelta = pixels[index + 1] - backgroundGreen;
+                        const blueDelta = pixels[index + 2] - backgroundBlue;
+                        const distance = Math.sqrt(redDelta * redDelta + greenDelta * greenDelta + blueDelta * blueDelta);
+
+                        if (distance <= threshold) {
+                            pixels[index + 3] = 0;
+                        }
+                    }
+
+                    context.putImageData(imageData, 0, 0);
+                    canvas.className = 'box-slider__text-logo';
+                    canvas.setAttribute('aria-hidden', 'true');
+                    resolve(canvas);
+                };
+
+                sourceImage.onerror = reject;
+                sourceImage.src = src;
+            });
+        }
+
+        buildTransparentLogo('./resources/text.gif').then(function (textLogo) {
+            const textBadge = document.createElement('div');
+            textBadge.className = 'box-slider__text-badge';
+            textBadge.appendChild(textLogo);
+            box.appendChild(textBadge);
+        }).catch(function () {
+            const textBadge = document.createElement('div');
+            textBadge.className = 'box-slider__text-badge';
+
+            const textLogoFallback = document.createElement('img');
+            textLogoFallback.className = 'box-slider__text-logo';
+            textLogoFallback.src = './resources/text.gif';
+            textLogoFallback.alt = 'Father Day logo';
+            textBadge.appendChild(textLogoFallback);
+            box.appendChild(textBadge);
+        });
+
+        let currentSlide = 3;
         let autoPlayTimer = null;
 
         sliderImage.classList.add('box-slider__image');
