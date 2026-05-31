@@ -66,35 +66,54 @@ function startImageInterval() {
     const randomElement = unloadedElements[Math.floor(Math.random() * unloadedElements.length)];
     const randomImage = baseImages[Math.floor(Math.random() * baseImages.length)];
     randomElement.style.background = `url('${randomImage}')`;
+    randomElement.dataset.src = randomImage;
     randomElement.classList.add('loaded');
     loadedCount++;
 
     randomElement.addEventListener('click', () => { 
-        // Crear Lightbox
         const lightbox = document.createElement('div');
         lightbox.className = 'lightbox-overlay';
         
-        const img = document.createElement('div');
+      const img = document.createElement('img');
         img.className = 'lightbox-img';
+      img.src = randomElement.dataset.src || randomImage;
+      img.alt = 'Vista ampliada';
         
-        // Copiar y ajustar el background de la imagen seleccionada
-        img.style.backgroundImage = randomElement.style.background;
-        
-        const closeBtn = document.createElement('span');
+      const closeBtn = document.createElement('button');
         closeBtn.className = 'lightbox-close';
-        closeBtn.innerHTML = '&times;';
+      closeBtn.type = 'button';
+      closeBtn.setAttribute('aria-label', 'Cerrar');
+      closeBtn.innerHTML = '&times;';
         
         lightbox.appendChild(img);
         lightbox.appendChild(closeBtn);
         document.body.appendChild(lightbox);
         
-        pauseInterval();
+      requestAnimationFrame(() => {
+        lightbox.classList.add('is-open');
+      });
 
-        // Cerrar lightbox al hacer clic en cualquier parte del mismo
-        lightbox.addEventListener('click', () => {
-            lightbox.remove();
-            resumeInterval();
+      pauseInterval();
+
+      const closeLightbox = () => {
+        lightbox.classList.remove('is-open');
+        window.setTimeout(() => {
+          lightbox.remove();
+          resumeInterval();
+        }, 220);
+      };
+
+      lightbox.addEventListener('click', (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
         });
+
+      img.addEventListener('click', (event) => event.stopPropagation());
+      closeBtn.addEventListener('click', (event) => {
+        event.stopPropagation();
+        closeLightbox();
+      });
     });
 
     if (loadedCount >= totalElementsToLoad) {
