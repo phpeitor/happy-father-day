@@ -8,30 +8,45 @@ html, body {
 	overflow: hidden;
 }
 
-#video-background {
+body {
+	font-family: 'Indie Flower', cursive !important;
+	position: relative;
+	isolation: isolate;
+	background:
+		linear-gradient(135deg, rgba(10, 18, 34, 0.96) 0%, rgba(9, 28, 47, 0.95) 38%, rgba(18, 58, 67, 0.94) 72%, rgba(48, 82, 64, 0.9) 100%);
+	background-size: 100% 100%;
+	color: #f8f5ef;
+}
+
+body::before,
+body::after {
+	content: '';
 	position: fixed;
-	top: -5%;
-	left: 0;
-	width: 100vw;
-	height: 110vh;
-	object-fit: cover;
+	inset: -18%;
+	pointer-events: none;
 	z-index: -2;
 }
 
-.video-overlay {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-	background: linear-gradient(135deg, rgba(235, 114, 21, 0.2) 0%, rgba(13, 21, 35, 0.7) 100%);
-	z-index: -1;
-	pointer-events: none;
+body::before {
+	background:
+		radial-gradient(circle at 18% 22%, rgba(255, 198, 87, 0.36) 0%, rgba(255, 198, 87, 0.08) 14%, transparent 28%),
+		radial-gradient(circle at 82% 18%, rgba(13, 199, 162, 0.28) 0%, rgba(13, 199, 162, 0.08) 13%, transparent 26%),
+		radial-gradient(circle at 70% 76%, rgba(255, 112, 87, 0.18) 0%, rgba(255, 112, 87, 0.05) 12%, transparent 28%),
+		radial-gradient(circle at 28% 78%, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.03) 10%, transparent 24%);
+	filter: blur(28px) saturate(115%);
+	opacity: 0.95;
+	animation: father-day-float 20s ease-in-out infinite alternate;
 }
 
-body {
-	font-family: 'Indie Flower', cursive !important;
-	background: #FDE3A7;
+body::after {
+	inset: 0;
+	background:
+		linear-gradient(120deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.01) 22%, transparent 40%),
+		radial-gradient(circle at 50% 50%, transparent 0%, rgba(3, 8, 20, 0.18) 100%);
+	background-size: 220% 220%;
+	mix-blend-mode: screen;
+	opacity: 0.85;
+	animation: father-day-sheen 16s linear infinite;
 }
 
 ::selection {
@@ -54,6 +69,7 @@ h4 {
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	z-index: 1;
 	background: #fdfaf3;
 	border-radius: 8px;
 	transform-style: preserve-3d;
@@ -163,7 +179,7 @@ h4 {
   top: 7%;
   left: 3%;
   transform: rotate(-10deg);
-  z-index: 100;
+	z-index: 2;
   width: 130px;
   filter: drop-shadow(0 0 10px rgba(249, 143, 22, 0.75));
   cursor: pointer;
@@ -256,4 +272,28 @@ h4 {
 
 .logo-lightbox__close:hover {
     background: rgba(255, 255, 255, 0.3);
+}
+
+@keyframes father-day-float {
+	0% {
+		transform: translate3d(-2%, -1%, 0) scale(1);
+	}
+	50% {
+		transform: translate3d(2%, 1.5%, 0) scale(1.05);
+	}
+	100% {
+		transform: translate3d(-1.5%, 2%, 0) scale(1.02);
+	}
+}
+
+@keyframes father-day-sheen {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }
