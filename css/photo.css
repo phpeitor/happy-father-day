@@ -2,11 +2,65 @@
 *{ box-sizing: border-box; -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; scroll-behavior: smooth;}
 html, body { height: 100%; overflow: hidden;}
 body {
+    position: relative;
+    isolation: isolate;
     display: flex; flex-direction: row; flex-wrap: wrap;
     justify-content: center; align-items: center; margin: 0;
-    --theme-clr: #fff;
+    --theme-clr: rgba(255, 250, 243, 0.86);
     font-family: "Mona Sans", sans-serif;
-    background: var(--theme-clr);
+    background:
+        radial-gradient(circle at 20% 20%, rgba(255, 116, 72, 0.28), transparent 26%),
+        radial-gradient(circle at 82% 18%, rgba(255, 201, 126, 0.22), transparent 24%),
+        radial-gradient(circle at 20% 82%, rgba(255, 93, 58, 0.16), transparent 24%),
+        radial-gradient(circle at 78% 76%, rgba(255, 151, 86, 0.14), transparent 22%),
+        linear-gradient(125deg, #fff6ef 0%, #ffe3d1 34%, #ffd3b9 68%, #fff7f0 100%);
+    background-size: 200% 200%;
+    animation: fatherDayBgShift 18s ease-in-out infinite;
+}
+
+body::before,
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+}
+
+body::before {
+    background:
+        radial-gradient(circle at 15% 30%, rgba(255, 255, 255, 0.44), transparent 18%),
+        radial-gradient(circle at 84% 28%, rgba(255, 255, 255, 0.28), transparent 16%),
+        radial-gradient(circle at 50% 78%, rgba(255, 255, 255, 0.16), transparent 22%);
+    filter: blur(26px);
+    opacity: 0.9;
+    animation: fatherDayFloat 14s ease-in-out infinite alternate;
+}
+
+body::after {
+    inset: -12%;
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 40%),
+        linear-gradient(315deg, rgba(255, 139, 89, 0.12), transparent 42%);
+    opacity: 0.65;
+    animation: fatherDayDrift 24s linear infinite;
+}
+
+@keyframes fatherDayBgShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+@keyframes fatherDayFloat {
+    0% { transform: translate3d(0, 0, 0) scale(1); }
+    50% { transform: translate3d(1.5%, -1.5%, 0) scale(1.04); }
+    100% { transform: translate3d(-1%, 1%, 0) scale(1.02); }
+}
+
+@keyframes fatherDayDrift {
+    from { transform: translate3d(0, 0, 0) rotate(0deg); }
+    to { transform: translate3d(2%, -2%, 0) rotate(360deg); }
 }
 
 .inf-grid-hero-container {
@@ -17,6 +71,7 @@ body {
     --sz: 1800px;
     --grid-sz: 0;
     --rev-dis: 0;
+    z-index: 1;
     > div {
         position: absolute;
         width: 100%; height: 100%;
@@ -195,8 +250,11 @@ body:has(div.selectedPane) div#back-btn {
     opacity: 1;
     pointer-events: all;
 }
-body:has(div.selectedPane) div.tp-dfwv {
-    display: none;
+div.tp-dfwv {
+    position: fixed !important;
+    top: 12px !important;
+    right: 12px !important;
+    z-index: 10020 !important;
 }
 
 .inf-grid-hero-container[style*="--rev-dis: 9"] > div > div, 
@@ -213,7 +271,7 @@ body:has(div.selectedPane) div.tp-dfwv {
     height: 100vh;
     background: rgba(0, 0, 0, 0.92);
     backdrop-filter: blur(10px);
-    z-index: 9999;
+    z-index: 9000;
     display: flex;
     justify-content: center;
     align-items: center;
