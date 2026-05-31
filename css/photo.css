@@ -6,7 +6,7 @@ body {
     isolation: isolate;
     display: flex; flex-direction: row; flex-wrap: wrap;
     justify-content: center; align-items: center; margin: 0;
-    --theme-clr: rgba(255, 250, 243, 0.86);
+    --theme-clr: rgba(255, 250, 243, 0.7);
     font-family: "Mona Sans", sans-serif;
     background:
         radial-gradient(circle at 20% 20%, rgba(255, 116, 72, 0.28), transparent 26%),
@@ -82,10 +82,11 @@ body::after {
         &::after {
             content: ''; display: block;
             height: 100%;
-            background: var(--theme-clr);
+            background: linear-gradient(135deg, rgba(255, 248, 241, 0.72), rgba(255, 227, 209, 0.38));
             position: absolute; left: 0; right: 0; top: 0; bottom: 0;
             pointer-events: none;
             z-index: 3;
+            backdrop-filter: blur(2px);
         }
         display: grid;
         grid-template-columns: repeat(var(--grid-sz), 1fr);
@@ -144,6 +145,30 @@ body::after {
         .shift-away { translate: -100% 0%;}
         > div { transform: translate3d( 0, 0, -50vw); }
     }
+}
+
+body.show-gradient {
+    background:
+        radial-gradient(circle at 18% 16%, rgba(255, 120, 74, 0.5), transparent 24%),
+        radial-gradient(circle at 82% 18%, rgba(255, 204, 132, 0.42), transparent 23%),
+        radial-gradient(circle at 22% 82%, rgba(255, 102, 70, 0.34), transparent 24%),
+        radial-gradient(circle at 78% 76%, rgba(255, 170, 110, 0.3), transparent 22%),
+        linear-gradient(125deg, #ffefe6 0%, #ffd7c0 34%, #ffbc97 68%, #fff3eb 100%);
+    background-size: 220% 220%;
+    animation: fatherDayBgShift 10s ease-in-out infinite;
+}
+
+body.show-gradient::before {
+    opacity: 1;
+    filter: blur(30px);
+}
+
+body.show-gradient::after {
+    opacity: 0.85;
+}
+
+body.show-gradient .inf-grid-hero-container > div::after {
+    background: linear-gradient(135deg, rgba(255, 244, 236, 0.32), rgba(255, 205, 167, 0.12));
 }
 
 .content {
@@ -304,7 +329,7 @@ div.tp-dfwv {
 .lightbox-close {
     position: absolute;
     top: 18px;
-    right: 22px;
+    left: 22px;
     color: #fff;
     font-size: 56px;
     font-weight: 400;
@@ -313,6 +338,7 @@ div.tp-dfwv {
     background: transparent;
     border: 0;
     line-height: 1;
+    z-index: 9010;
 }
 
 .lightbox-close:hover {

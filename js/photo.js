@@ -225,10 +225,7 @@ document.querySelector('.selectedPane')?.classList.remove('selectedPane');
 
 document.getElementById('back-btn').addEventListener('click', resumeInterval);
 
-document.querySelector('.button').addEventListener('click', () => {
-  const newValue = distance === 100 ? 0 : 100;
-  animateDistance(newValue, 1000);
-});
+// 'Ver' button removed — no global toggle attached now.
 
 function animateDistance(toValue, duration = 600) {
   const el = document.querySelector('.inf-grid-hero-container');
