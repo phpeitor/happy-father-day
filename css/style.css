@@ -114,6 +114,9 @@ h4 {
 	border-radius: 8px;
 	transform-origin: left;
 	transition: .7s;
+	overflow: hidden;
+	width: min(34vw, 28rem);
+	height: min(66vh, 39rem);
 }
 
 .card .bark {
@@ -127,9 +130,67 @@ h4 {
 }
 
 .card .Box img {
-	min-width: 250px;
-	max-height: 400px;
+	display: block;
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	background: #f3ead8;
 	border-radius: 8px;
+	transition: opacity 0.28s ease, transform 0.35s ease;
+	user-select: none;
+	pointer-events: none;
+}
+
+.card .Box .box-slider__image {
+	position: relative;
+	z-index: 1;
+}
+
+.box-slider__text-logo {
+	position: absolute;
+	top: 0.5rem;
+	right: 0.5rem;
+	width: min(6rem, 22%);
+	height: auto;
+	max-width: 6rem;
+	max-height: 6rem;
+	z-index: 3;
+	pointer-events: none;
+	user-select: none;
+	filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.35));
+	mix-blend-mode: normal;
+	object-fit: contain;
+}
+
+.box-slider__indicator {
+	position: absolute;
+	left: 50%;
+	bottom: 0.65rem;
+	transform: translateX(-50%);
+	z-index: 3;
+	display: flex;
+	gap: 0.35rem;
+	padding: 0.3rem 0.55rem;
+	border-radius: 999px;
+	background: rgba(8, 13, 24, 0.32);
+	backdrop-filter: blur(5px);
+}
+
+.box-slider__dot {
+	width: 0.5rem;
+	height: 0.5rem;
+	border-radius: 999px;
+	background: rgba(255, 255, 255, 0.35);
+	transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.box-slider__dot--active {
+	background: #ffd27d;
+	transform: scale(1.2);
+}
+
+.card .Box:hover .box-slider__indicator {
+	opacity: 1;
 }
 
 .card:hover .Box {

@@ -51,6 +51,77 @@ document.addEventListener("DOMContentLoaded", function () {
 
     typeNextLine();
 
+    // ===================== Slider principal =====================
+    (function () {
+        const box = document.querySelector('.card .Box');
+        if (!box) return;
+
+        const sliderImage = box.querySelector('img');
+        if (!sliderImage) return;
+
+        const slides = [];
+
+        for (let index = 1; index <= 6; index += 1) {
+            slides.push(`./resources/${index}.gif`);
+        }
+
+        slides.forEach(function (slideSrc) {
+            const preloadImage = new Image();
+            preloadImage.src = slideSrc;
+        });
+
+        const textLogo = document.createElement('img');
+        textLogo.className = 'box-slider__text-logo';
+        textLogo.src = './resources/text.gif';
+        textLogo.alt = 'Father Day logo';
+        box.appendChild(textLogo);
+
+        let currentSlide = 0;
+        let autoPlayTimer = null;
+
+        sliderImage.classList.add('box-slider__image');
+        sliderImage.alt = 'Father day slider';
+        sliderImage.src = slides[currentSlide];
+
+        const indicator = document.createElement('div');
+        indicator.className = 'box-slider__indicator';
+
+        slides.forEach(function (_, index) {
+            const dot = document.createElement('span');
+            dot.className = 'box-slider__dot';
+            if (index === currentSlide) {
+                dot.classList.add('box-slider__dot--active');
+            }
+            indicator.appendChild(dot);
+        });
+
+        box.appendChild(indicator);
+
+        const dots = Array.from(indicator.children);
+
+        function syncSlider() {
+            sliderImage.src = slides[currentSlide];
+            dots.forEach(function (dot, index) {
+                dot.classList.toggle('box-slider__dot--active', index === currentSlide);
+            });
+        }
+
+        function goToSlide(nextIndex) {
+            currentSlide = (nextIndex + slides.length) % slides.length;
+            syncSlider();
+        }
+
+        function restartAutoplay() {
+            window.clearInterval(autoPlayTimer);
+            autoPlayTimer = window.setInterval(function () {
+                goToSlide(currentSlide + 1);
+            }, 3200);
+        }
+
+        syncSlider();
+        restartAutoplay();
+    }());
+
     // ===================== Logo Lightbox =====================
     (function () {
         const logoEl = document.querySelector('.logo');
