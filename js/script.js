@@ -129,10 +129,28 @@ document.addEventListener("DOMContentLoaded", function () {
 
         let currentSlide = 3;
         let autoPlayTimer = null;
+        let isVideoMode = false;
 
         sliderImage.classList.add('box-slider__image');
         sliderImage.alt = 'Father day slider';
         sliderImage.src = slides[currentSlide];
+
+        const sliderVideo = document.createElement('video');
+        sliderVideo.className = 'box-slider__video';
+        sliderVideo.src = './resources/main.mp4';
+        sliderVideo.controls = true;
+        sliderVideo.loop = true;
+        sliderVideo.muted = false;
+        sliderVideo.playsInline = true;
+        sliderVideo.preload = 'metadata';
+        box.appendChild(sliderVideo);
+
+        const modeToggle = document.createElement('button');
+        modeToggle.className = 'box-slider__mode-toggle';
+        modeToggle.type = 'button';
+        modeToggle.setAttribute('aria-pressed', 'false');
+        modeToggle.textContent = 'Video';
+        box.appendChild(modeToggle);
 
         const indicator = document.createElement('div');
         indicator.className = 'box-slider__indicator';
@@ -164,10 +182,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
         function restartAutoplay() {
             window.clearInterval(autoPlayTimer);
+            if (isVideoMode) return;
+
             autoPlayTimer = window.setInterval(function () {
                 goToSlide(currentSlide + 1);
             }, 3200);
         }
+
+        function setVideoMode(nextIsVideoMode) {
+            isVideoMode = nextIsVideoMode;
+            box.classList.toggle('box-slider--video-mode', isVideoMode);
+            modeToggle.setAttribute('aria-pressed', String(isVideoMode));
+            modeToggle.textContent = isVideoMode ? 'Fotos' : 'Video';
+
+            if (isVideoMode) {
+                window.clearInterval(autoPlayTimer);
+                sliderVideo.play().catch(function () {
+                    // Some browsers require direct user interaction; controls remain visible.
+                });
+                return;
+            }
+
+            sliderVideo.pause();
+            restartAutoplay();
+        }
+
+        modeToggle.addEventListener('click', function (event) {
+            event.stopPropagation();
+            setVideoMode(!isVideoMode);
+        });
 
         syncSlider();
         restartAutoplay();

@@ -7,6 +7,10 @@
   [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
 </div>
 
+[![Video](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk)
+
+[![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=Od_2tI_j8pk)
+
 <hr/>
 
 ## 📖 Acerca del Proyecto
@@ -38,11 +42,3 @@
    ```
 
 *(Nota: Para evitar bloqueos CORS con el renderizado dinámico web o media, recomendamos utilizar un servidor estático ligero como "Live Server" en VS Code, o desplegar en tu entorno local Apache `htdocs`).*
-
-## 🎥 Demo
-
-[![Video 2](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk) |
-
-
----
-*If you're interested in knowing the powerlevel configuration to get this prompt, have a look at [this gist](https://github.com/phpeitor/).*
