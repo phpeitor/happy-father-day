@@ -5,6 +5,7 @@ html, body {
 	margin: 0;
 	padding: 0;
 	height: 100%;
+	min-height: 100svh;
 	overflow: hidden;
 }
 
@@ -54,7 +55,7 @@ body::after {
 }
 
 h4 {
-	font-size: 30px;
+	font-size: clamp(1.35rem, 4.9vw, 1.875rem);
 	line-height: 1.1;
 	margin: 2px 0;
 	font-family: 'Amatic SC', cursive !important;
@@ -65,10 +66,16 @@ h4 {
 
 
 .card {
+	--page-width: clamp(12rem, min(27vw, calc((100svh - 7rem) / 1.55)), 25rem);
+	--page-height: calc(var(--page-width) * 1.38);
+	--hover-scale: 1;
+	--hover-rotate: 7deg;
 	color: #01151d;
 	position: absolute;
 	top: 50%;
 	left: 50%;
+	width: var(--page-width);
+	height: var(--page-height);
 	z-index: 1;
 	background: #fdfaf3;
 	border-radius: 8px;
@@ -79,7 +86,7 @@ h4 {
 }
 
 .card:hover {
-	transform: translate(-50%,-50%) perspective(2000px) rotate(15deg) scale(1.2);
+	transform: translate(-50%,-50%) perspective(2000px) rotate(var(--hover-rotate)) scale(var(--hover-scale));
 	box-shadow: inset 20px 0 50px rgba(0,0,0,.5), 0 10px 100px rgba(0,0,0,.5);
 }
 
@@ -108,15 +115,13 @@ h4 {
 }
 
 .card .Box {
-	width: 100%;
-	height: 100%;
 	position: relative;
 	border-radius: 8px;
 	transform-origin: left;
 	transition: .7s;
 	overflow: hidden;
-	width: min(34vw, 28rem);
-	height: min(66vh, 39rem);
+	width: 100%;
+	height: 100%;
 }
 
 .card .bark {
@@ -223,17 +228,17 @@ h4 {
 	position: absolute;
 	top: 0;
 	left: 0;
-	width: 90%;
+	width: 92%;
 	box-sizing: border-box;
-	padding: 0 0 0 10px;
+	padding: clamp(0.1rem, 0.7vw, 0.55rem) clamp(0.5rem, 1.5vw, 1rem) 0 clamp(0.65rem, 1.6vw, 1.1rem);
 	z-index: -1;
-	margin-top: 5px;
+	margin-top: clamp(0.15rem, 0.7vw, 0.55rem);
 }
 
 .card .details p {
-	font-size: 16px;
-	line-height: 1.2;
-	padding: 2px 0 2px 10px;
+	font-size: clamp(0.78rem, 1.2vw, 1rem);
+	line-height: 1.17;
+	padding: 0.08rem 0 0.08rem clamp(0.35rem, 1vw, 0.65rem);
 	margin: 0;
 	color: #333;
 }
@@ -246,18 +251,34 @@ h4 {
 	text-align: right;
 }
 
+.intro-line {
+	margin-top: clamp(1.25rem, 4.6svh, 2.6rem) !important;
+}
+
 .spaced-line {
-    margin-bottom: 0.8em;
-    display: block;
+	margin-bottom: clamp(0.38rem, 1.2svh, 0.8rem) !important;
+	display: block;
+}
+
+.closing-line {
+	margin-bottom: clamp(1rem, 4svh, 2.4rem) !important;
+}
+
+.signature-line {
+	margin-top: clamp(0.4rem, 1.8svh, 1.1rem) !important;
+}
+
+.photo-link {
+	color: rgba(240, 69, 69, 0.8);
 }
 
 .logo{
   position: absolute;
-  top: 7%;
-  left: 3%;
+  top: clamp(1.4rem, 7svh, 4.2rem);
+  left: clamp(1rem, 3vw, 3.5rem);
   transform: rotate(-10deg);
 	z-index: 2;
-  width: 130px;
+  width: clamp(5.2rem, 9vw, 8.125rem);
   filter: drop-shadow(0 0 10px rgba(249, 143, 22, 0.75));
   cursor: pointer;
 }
@@ -372,5 +393,38 @@ h4 {
 	}
 	100% {
 		background-position: 0% 50%;
+	}
+}
+
+@media (max-height: 800px) {
+	.card {
+		--page-width: clamp(11rem, min(25vw, calc((100svh - 4.5rem) / 1.58)), 22.5rem);
+		--hover-scale: 1;
+		--hover-rotate: 4deg;
+	}
+
+	.card .details p {
+		font-size: clamp(0.74rem, 1.08vw, 0.94rem);
+		line-height: 1.13;
+	}
+
+	h4 {
+		font-size: clamp(1.2rem, 3.2vw, 1.65rem);
+	}
+
+	.logo {
+		top: clamp(1.1rem, 5svh, 2.5rem);
+	}
+}
+
+@media (max-width: 760px) {
+	.card {
+		--page-width: min(42vw, calc((100svh - 5rem) / 1.5));
+		--hover-scale: 1;
+		--hover-rotate: 0deg;
+	}
+
+	.logo {
+		width: clamp(4.6rem, 18vw, 6rem);
 	}
 }

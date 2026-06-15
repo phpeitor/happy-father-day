@@ -1,27 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
     const lines = [
-        "<b>Querido Papá,</b>",
-        "Recuerdo con cariño esas largas noches en las",
-        "que a pesar del cansancio, seguías trabajando.",
-        "No solo por cumplir con tus responsabilidades,",
-        "sino por el amor inquebrantable hacia la familia.",
-        "Eres nuestro héroe particular, ese <b>debugger</b> de",
-        "la vida que siempre encuentra la solución perfecta",
-        "a cualquier problema que se presente.",
-        "Deja a un lado el teclado y disfruta.<br>",
-        "Con todo mi cariño",
-        "♥ <b>PHPeitor</b> ♥",
-        "<a href='photo.html' style='color:rgba(240, 69, 69, 0.8);'>see photos</a>"
+        { html: "<b>Querido Papá,</b>", className: "intro-line" },
+        { html: "Recuerdo con cariño esas largas noches en las" },
+        { html: "que a pesar del cansancio, seguías trabajando." },
+        { html: "No solo por cumplir con tus responsabilidades," },
+        { html: "sino por el amor inquebrantable hacia la familia.", className: "spaced-line" },
+        { html: "Eres nuestro héroe particular, ese <b>debugger</b> de" },
+        { html: "la vida que siempre encuentra la solución" },
+        { html: "perfecta a cualquier problema que se presente.", className: "spaced-line" },
+        { html: "Deja a un lado el teclado y disfruta.", className: "closing-line" },
+        { html: "Con todo mi cariño", className: "text-right signature-line" },
+        { html: "♥ <b>PHPeitor</b> ♥", className: "text-right" },
+        { html: "<a class='photo-link' href='photo.html'>see photos</a>", className: "text-right" }
     ];
 
     const typedOutput = document.getElementById("typed-output");
     
     // Crear los elementos dinámicamente
-    lines.forEach((_, index) => {
+    lines.forEach((line, index) => {
         const p = document.createElement("p");
         p.id = `line${index + 1}`;
-        if (index >= 9) { // Las últimas 3 líneas
-            p.className = "text-right";
+        if (line.className) {
+            p.className = line.className;
         }
         typedOutput.appendChild(p);
     });
@@ -31,14 +31,8 @@ document.addEventListener("DOMContentLoaded", function () {
     function typeNextLine() {
         if (currentLine < lines.length) {
             const targetId = `line${currentLine + 1}`;
-            const element = document.getElementById(targetId);
-            
-            if (currentLine === 4 || currentLine === 7) {
-                element.classList.add("spaced-line");
-            }
-            
             new Typed(`#${targetId}`, {
-                strings: [lines[currentLine]],
+                strings: [lines[currentLine].html],
                 typeSpeed: 30,
                 showCursor: false,
                 onComplete: function () {
