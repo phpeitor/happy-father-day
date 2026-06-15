@@ -145,12 +145,25 @@ document.addEventListener("DOMContentLoaded", function () {
         sliderVideo.preload = 'metadata';
         box.appendChild(sliderVideo);
 
-        const modeToggle = document.createElement('button');
-        modeToggle.className = 'box-slider__mode-toggle';
-        modeToggle.type = 'button';
-        modeToggle.setAttribute('aria-pressed', 'false');
-        modeToggle.textContent = 'Video';
-        box.appendChild(modeToggle);
+        const modeSwitch = document.createElement('div');
+        modeSwitch.className = 'media-mode-switch';
+        modeSwitch.setAttribute('aria-label', 'Seleccionar modo del slider');
+
+        const photosButton = document.createElement('button');
+        photosButton.className = 'media-mode-switch__button media-mode-switch__button--active';
+        photosButton.type = 'button';
+        photosButton.setAttribute('aria-pressed', 'true');
+        photosButton.textContent = '▦ Fotos';
+
+        const videoButton = document.createElement('button');
+        videoButton.className = 'media-mode-switch__button';
+        videoButton.type = 'button';
+        videoButton.setAttribute('aria-pressed', 'false');
+        videoButton.textContent = '▶ Video';
+
+        modeSwitch.appendChild(photosButton);
+        modeSwitch.appendChild(videoButton);
+        document.body.appendChild(modeSwitch);
 
         const indicator = document.createElement('div');
         indicator.className = 'box-slider__indicator';
@@ -192,8 +205,10 @@ document.addEventListener("DOMContentLoaded", function () {
         function setVideoMode(nextIsVideoMode) {
             isVideoMode = nextIsVideoMode;
             box.classList.toggle('box-slider--video-mode', isVideoMode);
-            modeToggle.setAttribute('aria-pressed', String(isVideoMode));
-            modeToggle.textContent = isVideoMode ? 'Fotos' : 'Video';
+            photosButton.classList.toggle('media-mode-switch__button--active', !isVideoMode);
+            videoButton.classList.toggle('media-mode-switch__button--active', isVideoMode);
+            photosButton.setAttribute('aria-pressed', String(!isVideoMode));
+            videoButton.setAttribute('aria-pressed', String(isVideoMode));
 
             if (isVideoMode) {
                 window.clearInterval(autoPlayTimer);
@@ -207,9 +222,12 @@ document.addEventListener("DOMContentLoaded", function () {
             restartAutoplay();
         }
 
-        modeToggle.addEventListener('click', function (event) {
-            event.stopPropagation();
-            setVideoMode(!isVideoMode);
+        photosButton.addEventListener('click', function () {
+            setVideoMode(false);
+        });
+
+        videoButton.addEventListener('click', function () {
+            setVideoMode(true);
         });
 
         syncSlider();

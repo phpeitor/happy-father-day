@@ -470,10 +470,11 @@ h4 {
 }
 
 @media (max-height: 800px) {
-	.card {
+	:root {
 		--page-width: clamp(11rem, min(25vw, calc((100svh - 4.5rem) / 1.58)), 22.5rem);
 		--hover-scale: 1;
 		--hover-rotate: 4deg;
+		--media-switch-offset: calc(var(--page-width) * 0.69 + 0.65rem);
 	}
 
 	.card .details p {
@@ -491,10 +492,11 @@ h4 {
 }
 
 @media (max-width: 760px) {
-	.card {
+	:root {
 		--page-width: min(42vw, calc((100svh - 5rem) / 1.5));
 		--hover-scale: 1;
 		--hover-rotate: 0deg;
+		--media-switch-offset: calc(var(--page-width) * 0.69 + 0.75rem);
 	}
 
 	.logo {
