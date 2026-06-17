@@ -1,0 +1,282 @@
+@import url(https://fonts.bunny.net/css?family=jura:300,500);
+
+@layer base, demo;
+
+@layer demo {
+	body {
+		font-family: "Jura", sans-serif;
+		height: 100svh;
+	}
+
+	@property --rotation {
+		syntax: "<angle>";
+		inherits: true;
+		initial-value: 0;
+	}
+
+	input {
+		z-index: 190;
+		position: absolute;
+		top: 1rem;
+		left: 1rem;
+	}
+
+	.wrapper {
+		--card-trans-duration: 1000ms;
+		--card-trans-easing: linear(0, 0.01 0.8%, 0.038 1.6%, 0.154 3.4%, 0.781 9.7%, 1.01 12.5%, 1.089 13.8%, 1.153 15.2%, 1.195 16.6%, 1.219 18%, 1.224 19.7%, 1.208 21.6%, 1.172 23.6%, 1.057 28.6%, 1.007 31.2%, 0.969 34.1%, 0.951 37.1%, 0.953 40.9%, 0.998 50.4%, 1.011 56%, 0.998 74.7%, 1);
+
+		--card-width: clamp(40px, 7vw, 120px);
+		--card-border-radius: 1vw;
+
+		--radius: 40vmin;
+		--cards: sibling-count();
+		--arc-size: .95;
+		/* essentially the distance between cards */
+		--arc-center: 0.275;
+		/* start at bottom to last card will be at the top */
+		--arc-start: calc(var(--arc-center) - var(--arc-size) / 2);
+
+		--arc-shift-delta: 0.0075;
+
+
+		anchor-name: --center;
+
+		position: fixed;
+		inset: 0;
+		margin: auto;
+		width: var(--radius);
+		height: var(--radius);
+		aspect-ratio: 1;
+		transform: rotate(var(--rotation));
+		transition: transform 700ms linear;
+		display: grid;
+		place-content: center;
+
+		h1 {
+			margin: 0;
+			text-align: center;
+			font-size: clamp(1.2rem, 3.5vw + 0.045rem, 3rem);
+		}
+
+		div {
+			--card-i: var(--i);
+			--arc-step: calc(var(--arc-size) / (20 - 1));
+			--arc-shift: calc(var(--arc-shift-delta) * var(--d, 1));
+
+			--card-offset-distance: calc((var(--arc-start) + (var(--card-i) - 1) * var(--arc-step) + var(--arc-shift)) * 100%);
+
+
+			&:has(a:hover),
+			&:target {
+				--title-opacity: 1;
+			}
+
+			&:target {
+				--zindex: 2;
+				--center-opacity: 1;
+				--center-scale: 1;
+				--image-outline-color: var(--clr-lines);
+			}
+
+			&::before,
+			&::after {
+				content: '';
+				position: fixed;
+				position-anchor: --center;
+				transform: rotate(calc(var(--rotation) * -1));
+				transition-timing-function: ease-in-out;
+
+			}
+
+			/* large image  in center of wrapper */
+			&::before {
+				position-area: span-all;
+				width: calc(var(--radius));
+				aspect-ratio: 1;
+				border-radius: 9in;
+				background: var(--bg-img);
+				box-sizing: border-box;
+
+				outline: 10px solid var(--clr-lines);
+				outline-offset: -10px;
+				background-size: cover;
+				background-repeat: no-repeat;
+				background-attachment: fixed;
+				opacity: var(--center-opacity, 0);
+				scale: var(--center-scale, 0);
+				pointer-events: none;
+				transition-property: scale, opacity;
+				transition-duration: 300ms, 150ms;
+
+			}
+
+			/* image title - over thumb */
+			&::after {
+				content: attr(data-title);
+				position-anchor: --card;
+				position-area: center span-all;
+				z-index: 2;
+				pointer-events: none;
+				opacity: var(--title-opacity, 0);
+				transition-property: opacity, transform;
+				transition-duration: 150ms;
+				border: 1px solid rgb(255 255 255 / .75);
+				background: rgb(0 0 0 / .25);
+				backdrop-filter: blur(3px);
+				padding: .25em 1em;
+				border-radius: 5px;
+				font-size: clamp(.6rem, 1vw + .045rem, .85rem);
+
+				@starting-style {
+					opacity: 0;
+				}
+			}
+
+			/* links with images are placed in a circle */
+			a {
+				position: absolute;
+				display: block;
+				width: var(--card-width);
+				aspect-ratio: 4/6;
+				border-radius: var(--card-border-radius);
+				border: 2px solid var(--clr-bg);
+				offset-path: circle(var(--radius) at 50% 50%);
+				offset-distance: var(--card-offset-distance);
+				offset-rotate: auto;
+				offset-anchor: 50% 0%;
+				transition: offset var(--card-trans-duration) var(--card-trans-easing);
+				z-index: var(--zindex, 1);
+				anchor-name: --card;
+
+				img {
+					width: 100%;
+					height: 100%;
+					object-fit: cover;
+					display: block;
+					border-radius: inherit;
+					outline: 5px solid var(--image-outline-color, transparent);
+					outline-offset: -5px;
+					transition: outline 300ms ease-in-out;
+				}
+			}
+		}
+	}
+
+	/* ============================================================
+   FORWARD siblings (clockwise / +)
+   ============================================================ */
+	/* +1 */
+	.wrapper:has(> *:hover)>*:hover+*,
+	.wrapper:has(> :last-child:hover)> :nth-child(1) {
+		--d: 3;
+	}
+
+	/* +2 */
+	.wrapper:has(> *:hover)>*:hover+*+*,
+	.wrapper:has(> :last-child:hover)> :nth-child(2),
+	.wrapper:has(> :nth-last-child(2):hover)> :nth-child(1) {
+		--d: 2;
+	}
+
+	/* +3 */
+	.wrapper:has(> *:hover)>*:hover+*+*+*,
+	.wrapper:has(> :last-child:hover)> :nth-child(3),
+	.wrapper:has(> :nth-last-child(2):hover)> :nth-child(2),
+	.wrapper:has(> :nth-last-child(3):hover)> :nth-child(1) {
+		--d: 1;
+	}
+
+	/* +4 */
+	.wrapper:has(> *:hover)>*:hover+*+*+*+*,
+	.wrapper:has(> :last-child:hover)> :nth-child(4),
+	.wrapper:has(> :nth-last-child(2):hover)> :nth-child(3),
+	.wrapper:has(> :nth-last-child(3):hover)> :nth-child(2),
+	.wrapper:has(> :nth-last-child(4):hover)> :nth-child(1) {
+		--d: .5;
+	}
+
+	/* ============================================================
+   BACKWARD siblings (counter-clockwise / −)
+   ============================================================ */
+	/* −1 */
+	.wrapper *:has(+ *:hover),
+	.wrapper:has(> :nth-child(1):hover) :nth-last-child(1) {
+		--d: -3;
+	}
+
+	/* −2 */
+	.wrapper *:has(+ * + *:hover),
+	.wrapper:has(> :nth-child(1):hover) :nth-last-child(2),
+	.wrapper:has(> :nth-child(2):hover) :nth-last-child(1) {
+		--d: -2;
+	}
+
+	/* −3 */
+	.wrapper *:has(+ * + * + *:hover),
+	.wrapper:has(> :nth-child(1):hover) :nth-last-child(3),
+	.wrapper:has(> :nth-child(2):hover) :nth-last-child(2),
+	.wrapper:has(> :nth-child(3):hover) :nth-last-child(1) {
+		--d: -1;
+	}
+
+	/* −4 */
+	.wrapper *:has(+ * + * + * + *:hover),
+	.wrapper:has(> :nth-child(1):hover) :nth-last-child(4),
+	.wrapper:has(> :nth-child(2):hover) :nth-last-child(3),
+	.wrapper:has(> :nth-child(3):hover) :nth-last-child(2),
+	.wrapper:has(> :nth-child(4):hover) :nth-last-child(1) {
+		--d: -.5;
+	}
+
+}
+
+
+/* general styling not relevant for this demo */
+@layer base {
+
+	*,
+	::before,
+	::after {
+		box-sizing: border-box;
+	}
+
+	:root {
+		color-scheme: light dark;
+		--bg-dark: rgb(16, 24, 40);
+		--bg-light: rgb(248, 244, 238);
+		--txt-light: rgb(10, 10, 10);
+		--txt-dark: rgb(245, 245, 245);
+		);
+		--line-light: rgba(0 0 0 / .25);
+		--line-dark: rgba(255 255 255 / .25);
+
+		--clr-bg: light-dark(var(--bg-light), var(--bg-dark));
+		--clr-txt: light-dark(var(--txt-light), var(--txt-dark));
+		--clr-lines: light-dark(var(--line-light), var(--line-dark));
+	}
+
+	body {
+		background-color: var(--clr-bg);
+		color: var(--clr-txt);
+		min-height: 100svh;
+		margin: 0;
+		padding: 2rem;
+		font-family: "Jura", sans-serif;
+		font-size: 1rem;
+		line-height: 1.5;
+		display: grid;
+		place-items: center;
+		gap: 2rem;
+
+		&>* {
+			/*outline: 1px dashed red;*/
+		}
+	}
+
+	h1 {
+		margin: 0;
+		font-size: 1.2rem;
+	}
+
+
+}

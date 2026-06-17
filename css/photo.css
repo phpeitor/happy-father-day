@@ -219,7 +219,7 @@ body.show-gradient .inf-grid-hero-container > div::after {
     span { color: orangered; }
 
     &::after {
-        content: 'Haz click en cualquier foto para verla grande';
+        content: 'Haz click en cualquier foto';
         display: block;
         margin-top: 12px;
         padding: 7px 14px;
