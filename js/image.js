@@ -1,7 +1,27 @@
 const wrapper = document.querySelector('.wrapper');
 const title = wrapper.querySelector('h1');
+const preview = wrapper.querySelector('.gallery-preview');
+const previewImage = wrapper.querySelector('.gallery-preview__image');
 const sourceImages = 6;
 const totalCards = 18;
+
+const showPreview = (item) => {
+	if (!item) {
+		preview.classList.remove('gallery-preview--active');
+		previewImage.removeAttribute('src');
+		previewImage.alt = '';
+		return;
+	}
+
+	const image = item.querySelector('img');
+	previewImage.src = image.src;
+	previewImage.alt = image.alt;
+	preview.classList.add('gallery-preview--active');
+};
+
+const showPreviewFromHash = () => {
+	showPreview(document.querySelector(window.location.hash));
+};
 
 wrapper.style.setProperty('--cards', totalCards);
 
@@ -25,3 +45,6 @@ for (let i = 1; i <= totalCards; i += 1) {
 	item.append(link);
 	wrapper.insertBefore(item, title);
 }
+
+showPreviewFromHash();
+window.addEventListener('hashchange', showPreviewFromHash);

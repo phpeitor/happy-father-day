@@ -85,7 +85,7 @@
 		--card-width: clamp(40px, 7vw, 120px);
 		--card-border-radius: 1vw;
 
-		--radius: min(40vmin, 18rem);
+		--radius: min(46vmin, 22rem);
 		--cards: 18;
 		--arc-size: 1;
 		--arc-start: 0;
@@ -110,6 +110,12 @@
 			margin: 0;
 			text-align: center;
 			font-size: clamp(1.2rem, 3.5vw + 0.045rem, 3rem);
+			transition: opacity 200ms ease, scale 200ms ease;
+		}
+
+		&:has(> div:target) h1 {
+			opacity: 0;
+			scale: 0.92;
 		}
 
 		div {
@@ -145,6 +151,7 @@
 			/* large image  in center of wrapper */
 			&::before {
 				position-area: span-all;
+				z-index: 3;
 				width: calc(var(--radius));
 				aspect-ratio: 1;
 				border-radius: 9in;
