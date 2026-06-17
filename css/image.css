@@ -78,14 +78,43 @@
 		left: 1rem;
 	}
 
+	.home-button {
+		position: fixed;
+		top: max(1rem, env(safe-area-inset-top));
+		left: max(1rem, env(safe-area-inset-left));
+		z-index: 20;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		min-height: 2.5rem;
+		padding: 0.55rem 0.95rem;
+		border: 1px solid rgba(255, 255, 255, 0.24);
+		border-radius: 999px;
+		background: rgba(7, 13, 24, 0.54);
+		box-shadow: 0 14px 32px rgba(0, 0, 0, 0.28);
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+		color: #fff7e8;
+		font-weight: 500;
+		line-height: 1;
+		text-decoration: none;
+		transition: background 0.2s ease, transform 0.2s ease;
+	}
+
+	.home-button:hover {
+		background: linear-gradient(135deg, rgba(255, 210, 125, 0.95), rgba(255, 126, 108, 0.9));
+		color: #21140c;
+		transform: translateY(-1px);
+	}
+
 	.wrapper {
 		--card-trans-duration: 1000ms;
 		--card-trans-easing: linear(0, 0.01 0.8%, 0.038 1.6%, 0.154 3.4%, 0.781 9.7%, 1.01 12.5%, 1.089 13.8%, 1.153 15.2%, 1.195 16.6%, 1.219 18%, 1.224 19.7%, 1.208 21.6%, 1.172 23.6%, 1.057 28.6%, 1.007 31.2%, 0.969 34.1%, 0.951 37.1%, 0.953 40.9%, 0.998 50.4%, 1.011 56%, 0.998 74.7%, 1);
 
-		--card-width: clamp(40px, 7vw, 120px);
-		--card-border-radius: 1vw;
+		--card-width: clamp(2.4rem, 7vw, 6.5rem);
+		--card-border-radius: clamp(0.45rem, 1vw, 0.9rem);
 
-		--radius: min(50vmin, 24rem);
+		--radius: min(40vw, 40svh, 24rem);
 		--cards: 18;
 		--arc-size: 1;
 		--arc-start: 0;
@@ -233,6 +262,33 @@
 					transition: outline 300ms ease-in-out;
 				}
 			}
+		}
+	}
+
+	@media (max-width: 700px) {
+		.wrapper {
+			--card-width: clamp(2rem, 9vw, 3.2rem);
+			--radius: min(36vw, 36svh, 13rem);
+		}
+
+		.wrapper .gallery-preview {
+			width: calc(var(--radius) * 0.9);
+			border-width: 0.4rem;
+		}
+	}
+
+	@media (max-width: 420px) {
+		.home-button {
+			top: 0.75rem;
+			left: 0.75rem;
+			min-height: 2.25rem;
+			padding: 0.48rem 0.78rem;
+			font-size: 0.9rem;
+		}
+
+		.wrapper {
+			--card-width: clamp(1.75rem, 8.5vw, 2.4rem);
+			--radius: min(34vw, 35svh, 9rem);
 		}
 	}
 
