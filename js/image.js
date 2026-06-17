@@ -1,5 +1,4 @@
 const wrapper = document.querySelector('.wrapper');
-const title = wrapper.querySelector('h1');
 const preview = wrapper.querySelector('.gallery-preview');
 const previewImage = wrapper.querySelector('.gallery-preview__image');
 const sourceImages = 6;
@@ -20,7 +19,8 @@ const showPreview = (item) => {
 };
 
 const showPreviewFromHash = () => {
-	showPreview(document.querySelector(window.location.hash));
+	const id = window.location.hash.slice(1);
+	showPreview(id ? document.getElementById(id) : null);
 };
 
 wrapper.style.setProperty('--cards', totalCards);
@@ -43,7 +43,7 @@ for (let i = 1; i <= totalCards; i += 1) {
 
 	link.append(image);
 	item.append(link);
-	wrapper.insertBefore(item, title);
+	wrapper.insertBefore(item, preview);
 }
 
 showPreviewFromHash();
