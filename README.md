@@ -5,9 +5,9 @@
   [![forthebadge](http://forthebadge.com/images/badges/made-with-javascript.svg)](https://www.linkedin.com/in/drphp/)
   [![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](https://www.linkedin.com/in/drphp/)
   
-  [![Video](https://img.youtube.com/vi/Od_2tI_j8pk/0.jpg)](https://www.youtube.com/watch?v=Od_2tI_j8pk)
+  [![Video](https://img.youtube.com/vi/hDpEK6Yq-PM/0.jpg)](https://www.youtube.com/watch?v=hDpEK6Yq-PM)
 
-  [![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=Od_2tI_j8pk)
+  [![Video Demo](https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&logo=youtube)](https://www.youtube.com/watch?v=hDpEK6Yq-PM)
 </div>
 
 ## About
