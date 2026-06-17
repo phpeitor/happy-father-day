@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
         { html: "Deja a un lado el teclado y disfruta.", className: "closing-line" },
         { html: "Con todo mi cariño", className: "text-right signature-line" },
         { html: "♥ <b>PHPeitor</b> ♥", className: "text-right" },
-        { html: "<a class='photo-link' href='photo.html'>see photos</a>", className: "text-right" }
+        { html: "<a class='photo-link' href='photo.html'>photos</a>", className: "text-right" }
     ];
 
     const typedOutput = document.getElementById("typed-output");
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
         photosButton.className = 'media-mode-switch__button media-mode-switch__button--active';
         photosButton.type = 'button';
         photosButton.setAttribute('aria-pressed', 'true');
-        photosButton.textContent = '▦ Fotos';
+        photosButton.textContent = '▦ Slider';
 
         const videoButton = document.createElement('button');
         videoButton.className = 'media-mode-switch__button';
@@ -161,8 +161,20 @@ document.addEventListener("DOMContentLoaded", function () {
         videoButton.setAttribute('aria-pressed', 'false');
         videoButton.textContent = '▶ Video';
 
+        const galleryLink = document.createElement('a');
+        galleryLink.className = 'media-mode-switch__button';
+        galleryLink.href = 'image.html';
+        galleryLink.textContent = '◌ Gallery';
+
+        const photoLink = document.createElement('a');
+        photoLink.className = 'media-mode-switch__button';
+        photoLink.href = 'photo.html';
+        photoLink.textContent = '▧ Photo';
+
         modeSwitch.appendChild(photosButton);
         modeSwitch.appendChild(videoButton);
+        modeSwitch.appendChild(galleryLink);
+        modeSwitch.appendChild(photoLink);
         document.body.appendChild(modeSwitch);
 
         const indicator = document.createElement('div');

@@ -209,6 +209,7 @@ h4 {
 	font-family: 'Indie Flower', cursive;
 	font-size: clamp(0.82rem, 1.1vw, 1rem);
 	line-height: 1;
+	text-decoration: none;
 	cursor: pointer;
 	transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
